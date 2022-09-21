@@ -4,14 +4,13 @@
 ##ENTRYPOINT ["java","-jar","/app.jar"]
 
 FROM openjdk
-FROM maven:latest
+#FROM maven:latest
 # image layer
 WORKDIR /app
 ADD pom.xml /app
 # Image layer: with the application
 COPY . /app
-RUN mvn clean install -DskipTests
-EXPOSE 8080
+RUN ./mvnw clean package
 ADD ./target/demo-0.0.1-SNAPSHOT.jar /app
 RUN rm -rf ./src; rm -rf ./target
 ENTRYPOINT ["java","-jar","/app/demo-0.0.1-SNAPSHOT.jar"]
