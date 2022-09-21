@@ -13,4 +13,5 @@ COPY . /app
 RUN mvn clean install -DskipTests
 EXPOSE 8080
 ADD ./target/demo-0.0.1-SNAPSHOT.jar /app
+RUN rm -rf ./src; rm -rf ./target
 ENTRYPOINT ["java","-jar","/app/demo-0.0.1-SNAPSHOT.jar"]
